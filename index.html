@@ -10,7 +10,7 @@
 
 <body>
 
-<header class="hero">
+<header class="hero" align="center">
     <h1>Wonosobo coffee</h1>
     <p>From Local Farms to Local Cups</p>
 </header>
@@ -27,7 +27,8 @@
         </div>
         <div class="intro">
             <p>
-            Website ini dibuat sebagai bagian dari proses belajar web development sekaligus sebagai ruang untuk mengenalkan perjalanan kopi lokal Wonosobo dari sisi yang lebih dekat. Di dalamnya, saya ingin memperkenalkan petani dan produksi kopi lokal yang menjadi bagian awal dari perjalanan sebuah biji kopi, serta coffeeshop lokal yang mengolah dan menyajikannya kepada para penikmat kopi. Setiap bagian dibuat berdasarkan cerita, pengalaman, dan tempat yang saya temui, dengan harapan website ini dapat menjadi gambaran kecil tentang bagaimana kopi Wonosobo hadir dari local farms hingga local cups.
+            This website was created as part of my web development learning process. It is a project where I explore HTML, CSS, JavaScript, web design, and interactive elements while learning how to build a complete website from scratch. All characters, stories, locations, coffee farms, and businesses featured on this website are fictional and created solely for educational and portfolio purposes.
+            The project is inspired by the idea of local coffee production in Wonosobo, but it does not represent real farmers, businesses, or coffee producers.
             </p>
         </div>
     </div>
@@ -42,29 +43,47 @@
 
                 <div class="farmer-card">
                     <h2>Daniel Carter</h2>
+                    <h2> The Craft of Origin</h2>
                     <p>
-                    Daniel Carter began growing coffee in Wonosobo after
-                    discovering the region's unique highland climate.
-                    Coming from New York City, he wanted to experience
-                    coffee not only as a drink, but as a process that
-                    begins with the farmers and the land.
+                    The Craft of Origin
+                    Daniel believes great coffee begins with the land and the patience behind it. He focuses on preserving the natural character of each bean, valuing quality, tradition, and exclusivity over mass production. For Daniel, coffee is not just something to drink, but a story that should be experienced from farm to cup.
                     </p>
-                    <a href="farmers/daniel.html" class="learn-more">
+                    <a href="#" class="learn-more" data-farmer="daniel">
                     Learn More
                     </a>
                 </div>
 
                 <div class="farmer-card">
                     <h2>Marcus William</h2>
+                    <h2>Coffee for Everyone</h2>
                     <p>
-                    Marcus Williams moved from Brooklyn to Wonosobo with
-                    an interest in agriculture and local coffee production.
-                    What began as a personal interest eventually became
-                    a small coffee farm in the highlands of Wonosobo.
+                    Marcus believes coffee should be accessible to everyone. He focuses on consistency, freshness, and efficient production so his beans can reach more people without losing their character. For Marcus, coffee is not about exclusivity, but about creating a good cup that anyone can enjoy, anywhere.
                     </p>
-                    <a href="farmers/marcus.html" class="learn-more">
+                    <a href="#" class="learn-more" data-farmer="marcus">
                     Learn More
                     </a>
+                </div>
+
+                <div class="farmer-card">
+                    <h2>Arif Rahman</h2>
+                    <h2>The Patince of The Land</h2>
+                    <p>
+                    Arif believes great coffee comes from patience, consistency, and understanding the land. He focuses on maintaining healthy plants, careful harvesting, and preserving the balance of his coffee farm. For Arif, coffee is not about producing as much as possible, but about giving every bean enough time to become something worth remembering.
+                    </p>
+                    <a href="#" class="learn-more" data-farmer="arif">
+                    Learn More
+                    </a>
+                </div>
+
+                <div class="farmer-card">
+                <h2>Sinta Wulandari</h2>
+                <h2>The Curiosity Behind the Bean</h2>
+                <p>
+                Sinta believes coffee farming should never stop evolving. She explores different cultivation, processing, and roasting methods to discover what Wonosobo coffee can become. For Sinta, every harvest is an opportunity to experiment, learn from mistakes, and find new ways to bring the character of the land into every cup.
+                </p>
+                <a href="#" class="learn-more" data-farmer="sinta">
+                Learn More
+                </a>
                 </div>
 
             </div>
@@ -114,6 +133,30 @@
     </div>
 
 </div>
+
+    <div class="modal-overlay" id="farmerModal">
+        <div class="modal-box">
+            <button class="modal-close" id="modalClose">&times;</button>
+        <h2 id="modalTitle"></h2>
+        <div class="modal-section">
+            <h3>Profile</h3>
+            <p id="modalProfile"></p>
+        </div>
+        <div class="modal-section">
+            <h3>Production</h3>
+            <p id="modalProduction"></p>
+        </div>
+        <div class="modal-section">
+            <h3>Storage</h3>
+            <p id="modalStorage"></p>
+        </div>
+        <div class="modal-section">
+            <h3>Distribution</h3>
+            <p id="modalDistribution"></p>
+        </div>
+
+    </div>
+        </div>
 
 <script src="script.js"></script>
 </body>
