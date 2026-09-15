@@ -4,6 +4,7 @@ const prevButton = document.querySelector("#prevFarmer");
 
 let currentFarmer = 0;
 let autoSlide;
+let modalOpen = false;
 const totalFarmers = 4;
 
 function showFarmer() {
@@ -33,6 +34,19 @@ function startAutoSlide() {
 }
 
 startAutoSlide();
+
+const farmerContainer = document.querySelector(".farmer-container");
+
+farmerContainer.addEventListener("mouseenter", function () {
+    clearInterval(autoSlide);
+});
+
+farmerContainer.addEventListener("mouseleave", function () {
+    if (!modalOpen) {
+    clearInterval(autoSlide);
+    startAutoSlide();
+    }
+});
 
 const farmerData = {
     daniel: {
@@ -94,15 +108,23 @@ learnMoreLinks.forEach(function (link) {
         modalStorage.textContent = farmer.storage;
         modalDistribution.textContent = farmer.distribution;
         modal.classList.add("active");
+        modalOpen = true;
+        clearInterval(autoSlide);
     });
 });
 
 modalClose.addEventListener("click", function () {
     modal.classList.remove("active");
+    modalOpen = false;
+    clearInterval(autoSlide);
+    startAutoSlide();
     });
 
 modal.addEventListener("click", function (e) {
     if (e.target === modal) {
         modal.classList.remove("active");
+        modalOpen = false;
+        clearInterval(autoSlide);
+        startAutoSlide();
     }
 });
