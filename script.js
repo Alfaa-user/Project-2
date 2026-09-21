@@ -4,12 +4,16 @@ const prevButton = document.querySelector("#prevFarmer");
 
 let currentFarmer = 0;
 let autoSlide;
+let previousFarmer = 0;
 let modalOpen = false;
 const totalFarmers = 4;
 
 function showFarmer() {
     const percentage = currentFarmer * (100 / totalFarmers);
+    const isWarp = Math.abs(currentFarmer - previousFarmer) > 1;
+    track.style.transition = isWarp ? "none" : "";
     track.style.transform = "translateX(-" + percentage + "%)";
+    previousFarmer = currentFarmer;
 }
 
 nextButton.addEventListener("click", function () {
@@ -51,7 +55,7 @@ farmerContainer.addEventListener("mouseleave", function () {
 const farmerData = {
     daniel: {
             title: "Daniel Carter",
-            profile: "Daniel Carter sees coffee as a product of patience, place, and craftsmanship. He believes good coffee should preserve the character of where it comes from, rather than hiding it behind excessive processing or roasting",
+            profile: "Daniel Carter sees coffee as a product of patience, place, and craftsmanship. He believes good coffee should preserve the character of where it comes from, rather than hiding it behind excessive processing or roasting.",
             production: "Daniel mainly grows Arabica coffee suited to high-altitude environments. He prefers smaller harvests and selectively picks fully ripe cherries to preserve their natural sweetness and complexity.",
             storage: "Daniel stores properly dried beans in a cool, dry environment with minimal exposure to moisture, sunlight, and oxygen. He prefers smaller batches to maintain the coffee's original character.",
             distribution: "Daniel distributes his coffee through limited arrangements and direct connections with buyers. He prefers meeting customers personally and explaining the story behind the beans.",
@@ -81,10 +85,10 @@ const farmerData = {
 
 const modal = document.querySelector("#farmerModal");
 const farmerBackgrounds = {
-    daniel: "coffee daniel.jpg",
-    marcus: "coffee marcus.jpg",
-    arif: "coffee arif.jpg",
-    sinta: "coffee sinta.jpg"
+    daniel: "coffee-daniel.jpg",
+    marcus: "coffee-marcus.jpg",
+    arif: "coffee-arif.jpg",
+    sinta: "coffee-sinta.jpg"
 };
 const modalTitle = document.querySelector("#modalTitle");
 const modalProfile = document.querySelector("#modalProfile");
@@ -93,7 +97,13 @@ const modalStorage = document.querySelector("#modalStorage");
 const modalDistribution = document.querySelector("#modalDistribution");
 const modalClose = document.querySelector("#modalClose");
 const learnMoreLinks = document.querySelectorAll(".learn-more");
-
+learnMoreLinks.forEach(function (link) {
+    const card = link.closest(".farmer-card");
+    card.style.setProperty(
+        "--farmer-bg",
+        "url('" + farmerBackgrounds[link.dataset.farmer] + "')"
+               );
+});
 learnMoreLinks.forEach(function (link) {
     link.addEventListener("click",function (e) {
         e.preventDefault();

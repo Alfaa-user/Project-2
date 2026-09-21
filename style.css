@@ -25,6 +25,7 @@ body::before {
 
 .hero {
     margin: 30px 0 45px 0;
+    text-align: center;
 }
 .hero h1{
     font-family: "Playfair Display", serif;
@@ -89,6 +90,7 @@ body::before {
     overflow: hidden;
     border: 1px solid black;
     border-radius: 15px;
+    position: relative;
 }
 
 .farmer-track {
@@ -99,9 +101,19 @@ body::before {
 
 .farmer-card {
     width: 25%;
-    padding: 20px;
+    min-height: 350px;
+    padding: 30px 80px;
     box-sizing: border-box;
     flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    var(--farmer-bg, none);
+    background-size: cover;
+    background-position: center;
 }
 
 .coffee-selection {
@@ -119,24 +131,66 @@ body::before {
     display: block;
     width: 180px;
     height: 2px;
-    background: black;
+    background: white;
     margin-top: 18px;
 }
 
 .coffee-container {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     margin-top: 25px;
 }
 
 .coffee-card {
     width: calc(50% - 10px);
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 15px;
     padding: 20px;
     box-sizing: border-box;
+
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.coffee-info {
+    flex: 1;
+}
+
+.coffee-info h2 {
+    font-family: "Playfair Display", serif;
+    margin: 0 0 5px 0;
+}
+
+.coffee-location {
+    margin: 0 0 14px 0;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.coffee-description {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.coffee-rating {
+    min-width: 12px;
+    margin-left: 25px;
+    padding-left: 25px;
+    border-left: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.coffe-rating p {
+    margin: 7px 0;
+}
+
+.coffe-rating strong {
+    font-size: 17px;
+}
+
+.section-intro h1 {
+    font-family: "Plafair-Display", serif;
 }
 
 .column-right .section-intro h1 {
@@ -173,9 +227,11 @@ body::before {
 
 .section-devider::after {
     content: "";
-    height: 1px;
-    background: black;
+    height: 2px;
+    background: white;
     flex: 1;
+    background: white;
+    opacity: 0.6;
 }
 
 .section-devider span {
@@ -183,18 +239,88 @@ body::before {
     letter-spacing: 1px;
     text-transform: uppercase;
     white-space: nowrap;
+    position: relative;
+}
+
+.section-devider span::after {
+    content: "";
+    position: absolute;
+
+    right: -28px;
+    top: 50%;
+
+    width: 14px;
+    height: 2px;
+
+    background: white;
+    opacity: 0.8;
+
+    transform: rotate(-45deg);
 }
 
 .farmer-buttons {
+    position: absolute;
+    inset: 0;
+
     display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-    padding: 10px 15px 15px;
+    justify-content: space-between;
+    align-items: center;
+
+    pointer-events: none;
 }
 
 .farmer-buttons button {
-    padding: 5px 12px;
+    pointer-events: auto;
+
+    width: 35px;
+    height: 70px;
+
+    border: none;
+    background: transparent;
+
+    color: white;
+    font-size: 32px;
+    font-weight: 400;
+
     cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+#prevFarmer {
+    margin-left: 10px;
+}
+
+#nextFarmer {
+    margin-right: 10px;
+}
+
+.farmer-buttons button:hover {
+    transform: scale(1.2);
+}
+
+.learn-more {
+    align-self: center;
+
+    margin-top: 20px;
+    padding: 12px 30px;
+
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+
+    transition: 0.25s ease;
+}
+
+.learn-more:hover {
+    background: white;
+    color: black;
+    transform: translateY(-3px);
 }
 
 .modal-overlay {
@@ -281,4 +407,13 @@ body::before {
         max-width: 480px;
         display: block;
     }
+}
+
+@media (max-width: 800px); {
+    .main-container { flex-direction: column; }
+    .column-left,
+    .column-right,
+    .coffee-card { width: 100%; }
+    .farmer-card { padding: 30px 40px; }
+    .hero h1 { font-size: 40px; }
 }
