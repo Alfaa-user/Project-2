@@ -138,3 +138,65 @@ modal.addEventListener("click", function (e) {
         startAutoSlide();
     }
 });
+
+const coffeeshopData = [
+    { name: "SS Coffee", location: "Wonosobo, Central Java", desc: "Local Coffeeshop and the best manual brewing", myRating: "4,5", googleRating: "4,5" },
+    { name: "SinSu Coffee", location: "Wonosobo, Central java", desc: "Local coffeeshop with characteristic and interesting story", myRating: "4,5,", googleRating: "4,5"},
+    { name: "Marapi Coffee House", location: "Wonosobo, Central Java", desc: "A small coffe shop focused on simple brewing and locally sourced beans", myRating: "4,5", googleRating: "4,5"},
+    { name: "Arunika Coffe", location: "Wonosobo, Central Java", desc: "A cozy place for enjoying local coffee with a relaxed atmosphere.", myRating: "4,5", googleRating: "4,5" },
+    { name: "Dieng Brew", location: "Dieng, Wonosobo", desc: "A coffee spot inspired by the cold mountain atmosphere of the Dieng highlands.", myRating: "4,5", googleRating: "4,5" },
+    { name: "Kopi Lereng", location: "Wonosobo, Central Java", desc: "A local coffee shop highlighting the character of highland-grown coffee.", myRating: "4,5", googleRating: "4,4" },
+    { name: "Langit Senja Coffee", location: "Wonosobo, Central Java", desc: "A casual coffee space designed for slow afternoons, conversations, and good cups.", myRating: "4,5", googleRating: "4,5" },
+    { name: "Wonosobo Roastery", location: "Wonosobo, Central Java", desc: "A small coffee space that explores different beans, roasting profiles, and brewing methods.", myRating: "4,5", googleRating: "4,4" }
+];
+
+let leftIndex = Math.floor(Math.random() * coffeeshopData.length);
+let rightIndex = Math.floor(Math.random() * coffeeshopData.length);
+while (rightIndex === leftIndex) {
+    rightIndex = Math.floor(Math.random() * coffeeshopData.length);
+}
+
+const containerLeft = document.querySelector("#container-left");
+const containerRight = document.querySelector("#container-right");
+
+function renderShop(container, index) {
+    const shop = coffeeshopData[index];
+    container.querySelector(".cs-name").textContent = shop.name;
+    container.querySelector(".cs-location").textContent = shop.location;
+    container.querySelector(".cs-desc").textContent = shop.desc;
+    container.querySelector(".cs-myrating").textContent = shop.myRating;
+    container.querySelector(".cs-googlerating").textContent = shop.googleRating;
+}
+
+renderShop(containerLeft, leftIndex);
+renderShop(containerRight, rightIndex);
+
+const csNavButtons = document.querySelectorAll(".cs-nav");
+csNavButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+
+        const side = btn.dataset.side;
+        const dir = btn.dataset.dir;
+        const container = side === "left" ? containerLeft : containerRight;
+    function stepIndex(current, dir, exclude) {
+        let idx = dir === "up"
+        ? (current - 1 + coffeeshopData.length) % coffeeshopData.length
+        : (current + 1) % coffeeshopData.length;
+    while (idx === exclude) {
+        idx = dir === "up"
+        ? (current - 1 + coffeeshopData.length) % coffeeshopData.length
+        : (current + 1) % coffeeshopData.length;
+    }
+    return idx;
+}
+
+    if (side === "left") {
+        leftIndex = stepIndex(leftIndex, dir, rightIndex);
+        renderShop(container, leftIndex);
+    } else {
+        rightIndex = stepIndex(rightIndex, dir, leftIndex);
+        renderShop(container, rightIndex);
+    }
+
+    });
+});
