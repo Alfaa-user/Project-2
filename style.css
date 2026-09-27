@@ -465,11 +465,98 @@ body::before {
     }
 }
 
-@media (max-width: 800px); {
+@media (max-width: 800px) {
     .main-container { flex-direction: column; }
     .column-left,
     .column-right,
     .coffee-card { width: 100%; }
     .farmer-card { padding: 30px 40px; }
     .hero h1 { font-size: 40px; }
+
+    .coffeeshop-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .coffeeshop-container {
+        width: 100%;
+    }
+}
+
+.intro-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.intro-screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+            url("intro-coffee.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+
+.intro-content {
+    max-width: 600px;
+}
+
+.intro-content p {
+    margin: 0 0 12px 0;
+}
+
+.intro-line1 {
+    font-family: "Playfair Display", serif;
+    font-size: 34px;
+}
+
+.intro-line2 {
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+.intro-desc {
+    font-size: 15px;
+    margin-top: 15px;
+    opacity: 0.85;
+}
+
+.intro-btn {
+    margin-top: 25px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.intro-btn:hover {
+    background: white;
+    color: black;
+}
+
+.intro-hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.intro-active {
+    overflow: hidden;
 }

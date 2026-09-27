@@ -1,3 +1,11 @@
+const introScreen = document.querySelector("#introScreen");
+const beginBtn = document.querySelector("#beginJourney");
+
+beginBtn.addEventListener("click", function () {
+    introScreen.classList.add("intro-hide");
+    document.body.classList.remove("intro-active");
+});
+
 const track = document.querySelector(".farmer-track");
 const nextButton = document.querySelector('#nextFarmer');
 const prevButton = document.querySelector("#prevFarmer");
@@ -140,8 +148,8 @@ modal.addEventListener("click", function (e) {
 });
 
 const coffeeshopData = [
-    { name: "SS Coffee", location: "Wonosobo, Central Java", desc: "Local Coffeeshop and the best manual brewing", myRating: "4,5", googleRating: "4,5" },
-    { name: "SinSu Coffee", location: "Wonosobo, Central java", desc: "Local coffeeshop with characteristic and interesting story", myRating: "4,5,", googleRating: "4,5"},
+    { name: "SS Coffee", location: "Wonosobo, Central Java", desc: "Known for precise manual brewing and a quiet, no-rush atmosphere perfect for coffee purists.", myRating: "4,5", googleRating: "4,5" },
+    { name: "SinSu Coffee", location: "Wonosobo, Central java", desc: "A coffeeshop with its own quirky story behind the name, serving coffee with a warm and personal touch.", myRating: "4,5,", googleRating: "4,5"},
     { name: "Marapi Coffee House", location: "Wonosobo, Central Java", desc: "A small coffe shop focused on simple brewing and locally sourced beans", myRating: "4,5", googleRating: "4,5"},
     { name: "Arunika Coffe", location: "Wonosobo, Central Java", desc: "A cozy place for enjoying local coffee with a relaxed atmosphere.", myRating: "4,5", googleRating: "4,5" },
     { name: "Dieng Brew", location: "Dieng, Wonosobo", desc: "A coffee spot inspired by the cold mountain atmosphere of the Dieng highlands.", myRating: "4,5", googleRating: "4,5" },
