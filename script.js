@@ -149,12 +149,23 @@ modal.addEventListener("click", function (e) {
 
 const coffeeshopData = [
     { name: "SS Coffee", location: "Wonosobo, Central Java", desc: "Known for precise manual brewing and a quiet, no-rush atmosphere perfect for coffee purists.", myRating: "4,5", googleRating: "4,5" },
-    { name: "SinSu Coffee", location: "Wonosobo, Central java", desc: "A coffeeshop with its own quirky story behind the name, serving coffee with a warm and personal touch.", myRating: "4,5,", googleRating: "4,5"},
-    { name: "Marapi Coffee House", location: "Wonosobo, Central Java", desc: "A small coffe shop focused on simple brewing and locally sourced beans", myRating: "4,5", googleRating: "4,5"},
-    { name: "Arunika Coffe", location: "Wonosobo, Central Java", desc: "A cozy place for enjoying local coffee with a relaxed atmosphere.", myRating: "4,5", googleRating: "4,5" },
+
+    { name: "SinSu Coffee", location: "Wonosobo, Central Java", desc: "A coffeeshop with its own quirky story behind the name, serving coffee with a warm and personal touch.", myRating: "4,5", googleRating: "4,5" },
+
+    { name: "Marapi Coffee House", location: "Wonosobo, Central Java", desc: "A small coffee shop focused on simple brewing and locally sourced beans", myRating: "4,5", googleRating: "4,5"},
+
+    { name: "Arunika Coffee", location: "Wonosobo, Central Java", desc: "A cozy place for enjoying local coffee with a relaxed atmosphere, where you can sit back and take your time with every cup.", myRating: "4,5", googleRating: "4,5",
+        address: "Jl Dummy No. 1 Wonosobo",
+        hours: "08.00 - 22.00",
+        philosophy: "Slow down, one cup at a time.",
+        beans: "Arunika Sunrise, Honey Process"},
+
     { name: "Dieng Brew", location: "Dieng, Wonosobo", desc: "A coffee spot inspired by the cold mountain atmosphere of the Dieng highlands.", myRating: "4,5", googleRating: "4,5" },
+
     { name: "Kopi Lereng", location: "Wonosobo, Central Java", desc: "A local coffee shop highlighting the character of highland-grown coffee.", myRating: "4,5", googleRating: "4,4" },
+
     { name: "Langit Senja Coffee", location: "Wonosobo, Central Java", desc: "A casual coffee space designed for slow afternoons, conversations, and good cups.", myRating: "4,5", googleRating: "4,5" },
+
     { name: "Wonosobo Roastery", location: "Wonosobo, Central Java", desc: "A small coffee space that explores different beans, roasting profiles, and brewing methods.", myRating: "4,5", googleRating: "4,4" }
 ];
 
@@ -192,8 +203,8 @@ csNavButtons.forEach(function (btn) {
         : (current + 1) % coffeeshopData.length;
     while (idx === exclude) {
         idx = dir === "up"
-        ? (current - 1 + coffeeshopData.length) % coffeeshopData.length
-        : (current + 1) % coffeeshopData.length;
+        ? (idx - 1 + coffeeshopData.length) % coffeeshopData.length :
+        (idx + 1) % coffeeshopData.length;
     }
     return idx;
 }
@@ -208,3 +219,69 @@ csNavButtons.forEach(function (btn) {
 
     });
 });
+
+const luckyBtn = document.querySelector("#luckyBtn");
+const luckyResult = document.querySelector("#luckyResult");
+
+luckyBtn.addEventListener("click", function () {
+    const randomIndex = Math.floor(Math.random() * coffeeshopData.length);
+    const shop = coffeeshopData[randomIndex];
+
+    luckyResult.innerHTML =
+        "<h3>Your Challenge: " + shop.name + "</h3>" +
+        "<p>" + shop.location + "</p>" +
+        "<p>" + shop.desc + "</p>";
+    luckyResult.classList.add("show");
+});
+
+const standartMenu = {
+    manual: ["V60 - 32k", "Japanese Ice Coffee - 35k", "Tubruk - 25k", "French Press - 30k", "AeroPress - 32k"],
+    espresso: ["Espresso - 22k", "Americano - 25k", "Iced Americano - 27k", "Cappuccino - 30k", "Café Latte - 30k", "Flat White - 30k", "Mocha - 32k"],
+};
+
+const shopModal = document.querySelector("#shopModal");
+const menuModal = document.querySelector("#menuModal");
+let currentShop = null;
+
+function fillList(ul, items) {
+    ul.innerHTML = "";
+    items.forEach(function (text) {
+        const li = document.createElement("li");
+        li.textContent = text;
+        ul.appendChild(li);
+    });
+}
+
+function openShop(index) {
+   currentShop = coffeeshopData[index];
+    document.querySelector("#shopTitle").textContent = currentShop.name;
+    document.querySelector("#shopLocation").textContent = currentShop.address || "Coming Soon";
+    document.querySelector("#shopHours").textContent = currentShop.hours || "Coming Soon";
+    document.querySelector("#shopDesc").textContent = currentShop.desc;
+    document.querySelector("#shopPhilosophy").textContent = currentShop.philosophy || "Coming Soon";
+    document.querySelector("#shopBeans").textContent = currentShop.beans || "Coming Soon";
+    shopModal.classList.add("active");
+}
+
+function openMenu() {
+    document.querySelector("#menuTitle").textContent = currentShop.name + " menu";
+    fillList(document.querySelector("#menuManual"), standartMenu.manual);
+    fillList(document.querySelector("#menuEspresso"), standartMenu.espresso);
+    fillList(document.querySelector("#menuIconic"), currentShop.iconic || []);
+    menuModal.classList.add("active");
+}
+
+containerLeft.querySelector(".coffee-card").addEventListener("click", function () { openShop(leftIndex); });
+containerRight.querySelector(".coffee-card").addEventListener("click", function () { openShop(rightIndex); });
+document.querySelector("#openMenu").addEventListener("click", openMenu);
+
+document.querySelector("#shopClose").addEventListener("click", function () { shopModal.classList.remove("active"); });
+document.querySelector("#menuClose").addEventListener("click", function () { menuModal.classList.remove("active"); });
+shopModal.addEventListener("click", function (e) { if (e.target === shopModal) shopModal.classList.remove("active"); });
+menuModal.addEventListener("click", function (e) { if (e.target === menuModal) menuModal.classList.remove("active"); });
+
+document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    if (menuModal.classList.contains("active")) menuModal.classList.remove("active");
+    else shopModal.classList.remove("active");
+})

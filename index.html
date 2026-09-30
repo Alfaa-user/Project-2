@@ -156,8 +156,14 @@
     
 </div>
 
-<button class="lucky-btn" id="luckyBtn">I'm Feeling Lucky</button>
+<button class="lucky-btn" id="luckyBtn">Take The Challenge</button>
 
+  <div class="lucky-desc-box">
+        <p class="lucky-desc">
+         Take the Challenge to get a random coffeeshop pick. Once you get one, that's your mission: visit the place in person, order something from the menu, and write a short review with a photo to complete the challenge.
+         </p>
+    <div class="lucky-result" id="luckyResult"></div>
+  </div>
     <div class="modal-overlay" id="farmerModal">
         <div class="modal-box">
             <button class="modal-close" id="modalClose">&times;</button>
@@ -181,6 +187,29 @@
 
     </div>
         </div>
+
+<div class="modal-overlay" id="shopModal">
+    <div class="modal-box">
+        <button class="modal-close" id="shopClose">&times;</button>
+        <h2 id="shopTitle"></h2>
+        <div class="modal-section"><h3>Location</h3><p id="shopLocation"></p></div>
+        <div class="modal-section"><h3>Opening Hours</h3><p id="shopHours"></p></div>
+        <div class="modal-section"><h3>About</h3><p id="shopDesc"></p></div>
+        <div class="modal-section"><h3>Philosophy</h3><p id="shopPhilosophy"></p></div>
+        <div class="modal-section modal-wide"><h3>Signature Beans</h3><p id="shopBeans"></p></div>
+        <button class="lucky-btn modal-wide" id="openMenu">See Menu</button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="menuModal">
+    <div class="modal-box">
+        <button class="modal-close" id="menuClose">&times;</button>
+        <h2 id="menuTitle"></h2>
+        <div class="modal-section"><h3>Manual Brew</h3><ul id="menuManual"></ul></div>
+        <div class="modal-section"><h3>Espresso Based</h3><ul id="menuEspresso"></ul></div>
+        <div class="modal-section modal-wide"><h3>Iconic Menu</h3><ul id="menuIconic"></ul></div>
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>
